@@ -56,19 +56,20 @@ namespace FewTags
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
             //If Nothing Is Loaded
-            if (!FewTags.Main.NameplateStatsLoaded && !FewTags.Main.SnaxyTagsLoaded)
-            {
-                FewTags.Main.PositionID = -75.95f;
-                FewTags.Main.Position = -101.95f;
-                FewTags.Main.PositionBigText = 273.75f;
-            }
-            else if (FewTags.Main.NameplateStatsLoaded || FewTags.Main.SnaxyTagsLoaded)
-            {
-                FewTags.Main.PositionID = -102.95f;
-                FewTags.Main.Position = -130.95f;
-                FewTags.Main.PositionBigText = 273.75f;
-            }
-        }
+    if (!FewTags.Main.NameplateStatsLoaded && !FewTags.Main.SnaxyTagsLoaded)
+    {
+        FewTags.Main.PositionID = -75.95f;
+        FewTags.Main.Position = -95.95f;
+        FewTags.Main.PositionBigText = 263.75f;
+    }
+    else if (FewTags.Main.NameplateStatsLoaded || FewTags.Main.SnaxyTagsLoaded)
+    {
+        FewTags.Main.PositionID = -75.95f;
+        FewTags.Main.Position = -140.95f;
+        FewTags.Main.PositionBigText = 243.75f;
+    }
+
+}
 
         public void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
