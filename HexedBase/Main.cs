@@ -1,4 +1,4 @@
-﻿using CoreRuntime.Interfaces;
+using CoreRuntime.Interfaces;
 using CoreRuntime.Manager;
 using Newtonsoft.Json;
 using System;
@@ -125,37 +125,29 @@ namespace FewTags
         {
             try
             {
-                string baseDirectory = Directory.GetCurrentDirectory(); 
-                string directoryPath = System.IO.Path.Combine(baseDirectory, "Vrchat", "FewTags");
-
-                // Create the directory if it doesn't exist
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
-
                 using (HttpClient client = new HttpClient())
                 {
+                   
                     System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
+                   
                     HttpResponseMessage response = client.GetAsync("https://raw.githubusercontent.com/Fewdys/FewTags/main/FewTags.json").Result;
 
+                   
                     response.EnsureSuccessStatusCode();
 
-                    string filePath = System.IO.Path.Combine(directoryPath, "FewTags.json");
+                    
+                    s_rawTags = response.Content.ReadAsStringAsync().Result;
 
-                    string s_rawTags = response.Content.ReadAsStringAsync().Result;
+                    
+                    s_tags = JsonConvert.DeserializeObject<Json._Tags>(s_rawTags);
 
-                    File.WriteAllText(filePath, s_rawTags);
-
-                    Json._Tags s_tags = JsonConvert.DeserializeObject<Json._Tags>(s_rawTags);
-
-                    Console.WriteLine("Tags downloaded and saved successfully to: " + filePath);
+                    Console.WriteLine("Fetching Tags (If L + F Was Pressed This Could Potentially Cause Some Lag)");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error fetching or saving tags: " + ex.Message);
+                Console.WriteLine("Error fetching tags: " + ex.Message);
             }
         }
 
@@ -166,17 +158,18 @@ namespace FewTags
 
 
 
-        /*
-        private static void OnJoin(IntPtr _instance, IntPtr _user, IntPtr _methodInfo)
-        {
-            s_userJoined(_instance, _user, _methodInfo);
-            var vrcPlayer = UnhollowerSupport.Il2CppObjectPtrToIl2CppObject<VRC.Player>(_user);
-            //Chatbox.UpdateMyChatBoxOnJoin(vrcPlayer);
-            if (!s_rawTags.Contains(vrcPlayer.field_Private_APIUser_0.id)) return;
-            PlateHandler(vrcPlayer, overlay);
-        }*/
 
-        private static Plate s_plate { get; set; }
+/*
+private static void OnJoin(IntPtr _instance, IntPtr _user, IntPtr _methodInfo)
+{
+    s_userJoined(_instance, _user, _methodInfo);
+    var vrcPlayer = UnhollowerSupport.Il2CppObjectPtrToIl2CppObject<VRC.Player>(_user);
+    //Chatbox.UpdateMyChatBoxOnJoin(vrcPlayer);
+    if (!s_rawTags.Contains(vrcPlayer.field_Private_APIUser_0.id)) return;
+    PlateHandler(vrcPlayer, overlay);
+}*/
+
+private static Plate s_plate { get; set; }
         private static PlateStatic platestatic { get; set; }
         private static Json.Tags[] s_tagsArr { get; set; }
 
