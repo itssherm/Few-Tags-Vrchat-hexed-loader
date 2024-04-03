@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 
 namespace FewTags
@@ -48,8 +48,7 @@ namespace FewTags
 
             try
             {
-                NetworkManager.field_Internal_Static_NetworkManager_0.field_Internal_VRCEventDelegate_1_Player_0.field_Private_HashSet_1_UnityAction_1_T_0.Add(new Action<VRC.Player>(player => OnPlayerJoin(ref player)));
-               Console.WriteLine("[Patch] OnPlayerJoin Patched!");
+                NetworkManager.field_Internal_Static_NetworkManager_0.OnPlayerJoinedDelegate.field_Private_HashSet_1_UnityAction_1_T_0.Add(new Action<VRC.Player>(player => OnPlayerJoin(ref player)));
             }
             catch (Exception e)
             {
@@ -58,7 +57,7 @@ namespace FewTags
 
             try
             {
-                NetworkManager.field_Internal_Static_NetworkManager_0.field_Internal_VRCEventDelegate_1_Player_2.field_Private_HashSet_1_UnityAction_1_T_0.Add(new Action<VRC.Player>(player => OnPlayerLeave(ref player)));
+                NetworkManager.field_Internal_Static_NetworkManager_0.OnPlayerLeaveDelegate.field_Private_HashSet_1_UnityAction_1_T_0.Add(new Action<VRC.Player>(player => OnPlayerLeave(ref player)));
                 Console.WriteLine("[Patch] OnPlayerLeave Patched!");
             }
             catch (Exception e)
