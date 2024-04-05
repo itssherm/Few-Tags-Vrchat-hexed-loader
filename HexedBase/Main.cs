@@ -21,6 +21,8 @@ namespace FewTags
 
         private static MethodInfo s_joinMethod { get; set; }
         public static bool SnaxyTagsLoaded { get; private set; }
+        public static bool HexedClient { get; private set; }
+
         public static bool AbyssClientLoaded { get; private set; }
         public static bool NameplateStatsLoaded { get; private set; }
         public static bool VanixClientLoaded { get; private set; }
@@ -56,20 +58,31 @@ namespace FewTags
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
             //If Nothing Is Loaded
-    if (!FewTags.Main.NameplateStatsLoaded && !FewTags.Main.SnaxyTagsLoaded)
-    {
-        FewTags.Main.PositionID = -75.95f;
-        FewTags.Main.Position = -95.95f;
-        FewTags.Main.PositionBigText = 263.75f;
-    }
-    else if (FewTags.Main.NameplateStatsLoaded || FewTags.Main.SnaxyTagsLoaded)
-    {
-        FewTags.Main.PositionID = -75.95f;
-        FewTags.Main.Position = -140.95f;
-        FewTags.Main.PositionBigText = 243.75f;
-    }
-
-}
+            if (!FewTags.Main.NameplateStatsLoaded && !FewTags.Main.SnaxyTagsLoaded)
+            {
+                FewTags.Main.PositionID = -75.95f; // id
+                FewTags.Main.Position = -103.95f; // this is where it says fewtags or malicious
+                FewTags.Main.PositionBigText = 273.75f; // big plate
+            }
+            else if (FewTags.Main.NameplateStatsLoaded || FewTags.Main.SnaxyTagsLoaded)
+            {
+                FewTags.Main.PositionID = -102.95f; // id for when something is loaded
+                FewTags.Main.Position = -130.95f; // this is where it says fewtags or malicious for when something is loaded
+                FewTags.Main.PositionBigText = 273.75f; // big plate for when something is loaded
+            }
+            if (!FewTags.Main.HexedClient || FewTags.Main.HexedClient) // whatever the assembly name is (be sure to change the FewTags.NameplateStatsLoaded = MelonTypeBase<MelonMod>.RegisteredMelons.Any<MelonMod>(m => m.Info.Name == "NameplateStats"); to whatever its supposed to be called properly too)
+            {
+                FewTags.Main.PositionID = -75.95f; // id
+                FewTags.Main.Position = -103.95f; // this is where it says fewtags or malicious
+                FewTags.Main.PositionBigText = 273.75f; // big plate
+            }
+            else if (FewTags.Main.HexedClient || FewTags.Main.HexedClient)
+            {
+                FewTags.Main.PositionID = -102.95f; // id for when something is loaded
+                FewTags.Main.Position = -130.95f; // this is where it says fewtags or malicious for when something is loaded
+                FewTags.Main.PositionBigText = 273.75f; // big plate for when something is loaded
+            }
+        }
 
         public void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
@@ -188,6 +201,7 @@ private static Plate s_plate { get; set; }
                     for (int g = 0; g < s_tagsArr[i].Tag.Length; g++)
                     {
                         s_plate = new Plate(vrcPlayer, NameplateStatsLoaded || SnaxyTagsLoaded ? -158.75f - (g * 28f) : -128.75f - (g * 28f));
+                        s_plate = new Plate(vrcPlayer, HexedClient ? -158.95f - (g * 28f) : -131.95f - (g * 28f));
                         if (s_tagsArr[i].TextActive)
                         {
                             s_plate.Text.text += $"{s_tagsArr[i].Tag[g]}";
