@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Fewtags</RootNamespace>
+    <AssemblyName>Fewtags%28hexed%29</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CoreRuntime">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Runtime\CoreRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Runtime\Il2CppInterop.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Minimal">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Runtime\Newtonsoft.Json.Minimal.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Standalone">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\VRCCore-Standalone.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDKBase">
+      <HintPath>..\..\..\Settings\UnityLoader\VRChat\Dummy\VRCSDKBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+</Project>
